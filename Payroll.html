@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne"/>
+     <link href="https://fonts.googleapis.com/css2?family=Franklin+Gothic:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Links website</title>
+    <style>
+      body {
+        background-image: url(ltotbngnzzu.jpg); 
+        background-size: cover;
+         font-family: 'Franklin Gothic', sans-serif;
+      }
+       .center-table {
+      margin: 0 auto; 
+      width: 80%; 
+    }
+
+      .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+      .image-container {
+        text-align: center;
+        width: 100%;
+      }
+
+     .payroll-container, .personal-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 15px;
+      padding: 20px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    
+table {
+  width: 100%; 
+  margin: 0 auto; 
+  border-collapse: collapse; 
+}
+
+th, td {
+  padding: 8px; 
+  text-align: center; 
+  border-bottom: 1px solid #ddd; 
+}
+
+th {
+  background-color: #f2f2f2; 
+}
+
+      .w3-button, .calculate-button, .conversion-buttons, , {
+      width: 350px;
+      background-color: #C3B1E1 !important;
+      margin-bottom: 10px;
+    }
+    label strong {
+  font-weight: bold;
+  
+}
+/* Styling for the payroll table */
+.payroll-container {
+    text-align: center;
+    margin-top: px;
+    padding: 20px;
+}
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust margin-top as needed */
+}
+
+.rounded-box {
+      background-color: #f0f0f0; /* Set the desired background color */
+      border-radius: 15px; /* Adjust the value to change the roundness */
+      padding: 20px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+
+      .links-container, .result {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      #ADDU {
+      font-family: Roboto, sans-serif;
+      }
+
+      .w3-yellow,
+      .w3-hover-purple:hover,
+      .w3-text-black, .result {
+        color: rgba(300, 121, 165) !important;
+        background-color: rgba(300, 255, 110, 0.3) !important;
+      }
+      employeeInfo.style.color = 'blue';
+    </style>
+  </head>
+
+  <body class="w3-white">
+    <div class="container">
+      
+      <div class="image-container">
+        <img
+          src="Ateneo.png"
+          class="w3-margin"
+          alt="Person"
+          max-width="100%"
+          height="150px"
+          style="border-radius: 50%"
+        />
+
+        <div class="w3-text-blue" id="ADDU">
+          <p class="w3-xlarge"><strong>CS 1130 ASSIGNMENT</strong></p>
+        </div>
+      
+
+
+
+            <script>
+                 var payrollData = [];
+
+    function addEmployee() {
+      var employeeName = prompt("Enter Employee Name:");
+      var daysWorked = parseInt(prompt("Enter Days Worked:"));
+      var dailyRate = parseFloat(prompt("Enter Daily Rate:"));
+      var deductionAmount = parseFloat(prompt("Enter Deduction Amount:"));
+
+      var grossPay = daysWorked * dailyRate;
+      var netPay = grossPay - deductionAmount;
+
+      payrollData.push({
+        employeeName: employeeName,
+        daysWorked: daysWorked,
+        dailyRate: dailyRate,
+        grossPay: grossPay,
+        deductionAmount: deductionAmount,
+        netPay: netPay
+      });
+
+      updatePayrollTable();
+    }
+
+    function deleteEmployee() {
+      var lineNumberToDelete = parseInt(prompt("Enter Line Number to Delete:")) - 1;
+
+      if (lineNumberToDelete >= 0 && lineNumberToDelete < payrollData.length) {
+
+        payrollData.splice(lineNumberToDelete, 1);
+
+        updatePayrollTable();
+      } else {
+        alert("Invalid Line Number. Please enter a valid Line Number.");
+      }
+    }
+
+    function updatePayrollTable() {
+      var payrollTable = document.getElementById("payrollTable");
+      payrollTable.innerHTML = ""; 
+
+      var headerRow = payrollTable.insertRow(0);
+      var headers = ["No.", "Employee Name", "Days Worked", "Daily Rate", "Gross Pay", "Deduction Amount", "Net Pay"];
+
+      for (var i = 0; i < headers.length; i++) {
+        var th = document.createElement("th");
+        th.textContent = headers[i];
+        headerRow.appendChild(th);
+      }
+
+      for (var i = 0; i < payrollData.length; i++) {
+        var rowData = payrollData[i];
+        var row = payrollTable.insertRow(i + 1);
+
+        var cellNo = row.insertCell(0);
+        var cellEmployeeName = row.insertCell(1);
+        var cellDaysWorked = row.insertCell(2);
+        var cellDailyRate = row.insertCell(3);
+        var cellGrossPay = row.insertCell(4);
+        var cellDeductionAmount = row.insertCell(5);
+        var cellNetPay = row.insertCell(6);
+
+        cellNo.textContent = i + 1;
+        cellEmployeeName.textContent = rowData.employeeName;
+        cellDaysWorked.textContent = rowData.daysWorked;
+        cellDailyRate.textContent = rowData.dailyRate;
+        cellGrossPay.textContent = rowData.grossPay;
+        cellDeductionAmount.textContent = rowData.deductionAmount;
+        cellNetPay.textContent = rowData.netPay;
+      }
+    }
+            </script>
+            
+
+       <!-- Links section 1. Replace the # inside of the "" with your links. -->
+<div class="payroll-container">
+    <div>
+        <button class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="addEmployee()">Add Employee</button>
+        <button class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="deleteEmployee()">Delete Employee</button>
+    </div>
+
+    <table class="w3-table center-table rounded-box" id="payrollTable" border = "1">
+        <thead>
+            <tr>
+                <th >No.</th>
+                <th>Employee Name</th>
+                <th>Days Worked</th>
+                <th>Daily Rate</th>
+                <th>Gross Pay</th>
+                <th>Deduction Amount</th>
+                <th>Net Pay</th>
+            </tr>
+        </thead>
+        <tbody id="payrollData" class = ></tbody>
+    </table>
+    <br>
+    <br>
+    <div>
+    <a href="index.html" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link">BACK</a>
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>
