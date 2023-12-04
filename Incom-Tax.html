@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne"/>
+    <link href="https://fonts.googleapis.com/css2?family=Franklin+Gothic:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Links website</title>
+    <style>
+      body {
+        background-image: url(Tax.jpg); 
+        background-size: cover;
+        font-family: 'Franklin Gothic', sans-serif;
+      }
+
+      .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .box {
+            width: 350px; 
+            height: 180px; 
+            background-color: #f0f0f0; 
+            padding: 20px; 
+            border-radius: 10px;
+        
+        }
+
+      .image-container {
+        text-align: center;
+        width: 100%;
+      }
+
+      .links-container, .conversion-container, .calculator-container, .factorial-container, .payroll-container, .personal-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+      .w3-button, .calculate-button, .conversion-buttons, , {
+      width: 350px;
+      background-color: #C3B1E1 !important;
+      margin-bottom: 10px;
+    }
+    label strong {
+  font-weight: bold;
+  
+}
+
+
+      .links-container, .result {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .link {
+        min-width: 50% !important;
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1140px;
+        }
+      }
+      @media (min-width: 992px) {
+        .container {
+          max-width: 960px;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          max-width: 720px;
+        }
+
+        .link {
+          width: 100%;
+        }
+      }
+      @media (min-width: 576px) {
+        .container {
+          max-width: 540px;
+        }
+      }
+       #ADDU {
+      font-family: 'Franklin Gothic', sans-serif;
+      }
+      .rounded-box {
+      width: 300px;
+      height: 150px;
+      background-color: #f0f0f0;
+      border-radius: 15px; /* Adjust the value to change the roundness */
+      padding: 20px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f0f0f0, #c0c0c0);
+       box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+      /* Other styling properties */
+    }
+
+      .w3-yellow,
+      .w3-hover-purple:hover,
+      .w3-text-black, .result {
+        color: rgba(300, 121, 165) !important;
+        background-color: rgba(300, 255, 110, 0.3) !important;
+      }
+      employeeInfo.style.color = 'blue';
+    </style>
+  </head>
+
+  <body class="w3-white">
+    <!-- Content container -->
+    <div class="container">
+      <!-- Image and name container. Change to your picture here. -->
+      <div class="image-container">
+        <img
+          src="Ateneo.png"
+          class="w3-margin"
+          alt="Person"
+          max-width="100%"
+          height="150px"
+          style="border-radius: 50%"
+        />
+
+        <!-- Content. Add bio. -->
+        <div class="w3-text-blue" id="ADDU">
+          <p class="w3-xlarge"><strong>CS 1130 ASSIGNMENT</strong></p>
+        </div>
+      
+
+
+        <!-- Unit Converter Section -->
+        <div class="converter-container">
+            <h1></h1>
+      
+     <script>
+    
+    function calculateTax() {
+  var incomeInput = document.getElementById('income');
+  var income = parseFloat(incomeInput.value);
+
+  var tax = 0;
+  if (income <= 250000) {
+    tax = 0; // No tax for income up to PHP 250,000
+  } else if (income <= 400000) {
+    tax = (income - 250000) * 0.20; // 20% tax rate for income between PHP 250,001 - PHP 400,000
+  } else if (income <= 800000) {
+    tax = 30000 + (income - 400000) * 0.25; // PHP 30,000 + 25% tax rate for income between PHP 400,001 - PHP 800,000
+  } else if (income <= 2000000) {
+    tax = 130000 + (income - 800000) * 0.30; // PHP 130,000 + 30% tax rate for income between PHP 800,001 - PHP 2,000,000
+  } else if (income <= 8000000) {
+    tax = 490000 + (income - 2000000) * 0.32; // PHP 490,000 + 32% tax rate for income between PHP 2,000,001 - PHP 8,000,000
+  } else {
+    tax = 2410000 + (income - 8000000) * 0.35; // PHP 2,410,000 + 35% tax rate for income over PHP 8,000,000
+  }
+
+  var taxResult = document.getElementById('taxResult');
+  taxResult.innerHTML = "Your income tax is: PHP " + tax.toFixed(2);
+}
+   
+            </script>
+      </head>     
+      <div id="links-container" class="links-container" class = "rounded-box">
+        <div class = "rounded-box">
+          <br>
+        <label for="income"><div class = "w3-text-blue" id ="ADDU"><strong> Enter Your Annual Income in PHP</strong> </div> </label>
+          <input type="number" id="income" placeholder="Enter Here" />
+          <p id="taxResult"></p>
+          </div>
+        <a class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick = "calculateTax()">Calculate Tax</a>
+        <br>
+        <br>
+        <a href="index.html" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="goBackFromCalculator()">Back</a>
+        <img
+         src="Ateneo.png"
+          class="w3-margin"
+          alt="Person"
+          max-width="20%"
+          height="70px"
+          style="border-radius: 5%"
+        />
+  </footer>
+</body>
+</html>
