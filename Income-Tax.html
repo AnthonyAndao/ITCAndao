@@ -96,12 +96,45 @@
       width: 300px;
       height: 150px;
       background-color: #f0f0f0;
-      border-radius: 15px; /* Adjust the value to change the roundness */
+      border-radius: 15px; z  
       padding: 20px;
       margin: 0 auto;
       background: linear-gradient(135deg, #f0f0f0, #c0c0c0);
        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
-      /* Other styling properties */
+   
+    }
+    .modal {
+      display: none;
+      position: center;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 70%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin:  15px auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      text-align: center;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
     }
 
       .w3-yellow,
@@ -142,49 +175,81 @@
      <script>
     
     function calculateTax() {
-  var incomeInput = document.getElementById('income');
-  var income = parseFloat(incomeInput.value);
+      var incomeInput = document.getElementById('income');
+      var income = parseFloat(incomeInput.value);
 
-  var tax = 0;
-  if (income <= 250000) {
-    tax = 0; // No tax for income up to PHP 250,000
-  } else if (income <= 400000) {
-    tax = (income - 250000) * 0.20; // 20% tax rate for income between PHP 250,001 - PHP 400,000
-  } else if (income <= 800000) {
-    tax = 30000 + (income - 400000) * 0.25; // PHP 30,000 + 25% tax rate for income between PHP 400,001 - PHP 800,000
-  } else if (income <= 2000000) {
-    tax = 130000 + (income - 800000) * 0.30; // PHP 130,000 + 30% tax rate for income between PHP 800,001 - PHP 2,000,000
-  } else if (income <= 8000000) {
-    tax = 490000 + (income - 2000000) * 0.32; // PHP 490,000 + 32% tax rate for income between PHP 2,000,001 - PHP 8,000,000
-  } else {
-    tax = 2410000 + (income - 8000000) * 0.35; // PHP 2,410,000 + 35% tax rate for income over PHP 8,000,000
-  }
+      var tax = 0;
+      if (income <= 250000) {
+        tax = 0;
+      } else if (income <= 400000) {
+        tax = (income - 250000) * 0.20;
+      } else if (income <= 800000) {
+        tax = 30000 + (income - 400000) * 0.25;
+      } else if (income <= 2000000) {
+        tax = 130000 + (income - 800000) * 0.30;
+      } else if (income <= 8000000) {
+        tax = 490000 + (income - 2000000) * 0.32;
+      } else {
+        tax = 2410000 + (income - 8000000) * 0.35;
+      }
 
-  var taxResult = document.getElementById('taxResult');
-  taxResult.innerHTML = "Your income tax is: PHP " + tax.toFixed(2);
-}
+       var taxResult = document.getElementById('taxResult');
+      taxResult.innerHTML = "Your income tax is: PHP " + tax.toFixed(2);
+    }
+
+    function openConfirmationModal() {
+      var modal = document.getElementById('confirmModal');
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      var modal = document.getElementById('confirmModal');
+      modal.style.display = 'none';
+    }
+
+    function confirmCalculation() {
+      calculateTax();
+      closeModal();
+    }
    
             </script>
-      </head>     
-      <div id="links-container" class="links-container" class = "rounded-box">
-        <div class = "rounded-box">
+      </head>
+           
+     <div class="converter-container">
+      <div id="links-container" class="links-container" class="rounded-box">
+        <div class="rounded-box">
           <br>
-        <label for="income"><div class = "w3-text-blue" id ="ADDU"><strong> Enter Your Annual Income in PHP</strong> </div> </label>
+          <label for="income">
+            <div class="w3-text-blue" id="ADDU"><strong> Enter Your Annual Income in PHP</strong></div>
+          </label>
           <input type="number" id="income" placeholder="Enter Here" />
           <p id="taxResult"></p>
-          </div>
-        <a class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick = "calculateTax()">Calculate Tax</a>
+        </div>
+        <a class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="openConfirmationModal()">Calculate Tax</a>
         <br>
         <br>
         <a href="index.html" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="goBackFromCalculator()">Back</a>
         <img
-         src="Ateneo.png"
+          src="Ateneo.png"
           class="w3-margin"
           alt="Person"
           max-width="20%"
           height="70px"
           style="border-radius: 5%"
         />
+
+        <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Are you sure you want to calculate tax?</p>
+      <button id="confirmBtn" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" onclick="confirmCalculation()">Confirm</button>
+    </div>
+  </div>
+
+  <script>
+    function calculateTax() {
+    </div>
+  </div>
   </footer>
 </body>
 </html>
